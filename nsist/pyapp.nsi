@@ -135,6 +135,10 @@ Section "Uninstall"
   Delete "$INSTDIR\${PRODUCT_ICON}"
   RMDir /r "$INSTDIR\pkgs"
 
+  [% for command in ib.uninstall_commands %]
+    nsExec::ExecToLog '[[ command ]]'
+  [% endfor %]
+
   ; Remove ourselves from %PATH%
   [% block uninstall_commands %]
   [% if has_commands %]

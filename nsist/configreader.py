@@ -74,6 +74,7 @@ CONFIG_VALIDATORS = {
         ('files', False),
         ('exclude', False),
         ('install_commands', False),
+        ('uninstall_commands', False),
     ]),
     'Python': SectionValidator([
         ('version', False),
@@ -231,4 +232,5 @@ def get_installer_builder_args(config):
     args['nsi_template'] = config.get('Build', 'nsi_template', fallback=None)
     args['exclude'] = config.get('Include', 'exclude', fallback='').strip().splitlines()
     args['install_commands'] = config.get('Include', 'install_commands', fallback='').strip().splitlines()
+    args['uninstall_commands'] = config.get('Include', 'uninstall_commands', fallback='').strip().splitlines()
     return args

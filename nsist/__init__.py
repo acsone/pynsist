@@ -96,6 +96,7 @@ class InstallerBuilder(object):
     :param str installer_name: Filename of the installer to produce
     :param str nsi_template: Path to a template NSI file to use
     :param list install_commands: Commands to be run after installation
+    :param list uninstall_commands: Commands to be run before uninstallation
     """
     def __init__(self, appname, version, shortcuts, publisher=None,
                 icon=DEFAULT_ICON, packages=None, extra_files=None,
@@ -103,7 +104,7 @@ class InstallerBuilder(object):
                 py_format=None, inc_msvcrt=True, build_dir=DEFAULT_BUILD_DIR,
                 installer_name=None, nsi_template=None,
                 exclude=None, pypi_wheel_reqs=None, commands=None,
-                install_commands=None):
+                install_commands=None, uninstall_commands=None):
         self.appname = appname
         self.version = version
         self.publisher = publisher
@@ -115,6 +116,7 @@ class InstallerBuilder(object):
         self.pypi_wheel_reqs = pypi_wheel_reqs or []
         self.commands = commands or {}
         self.install_commands = install_commands
+        self.uninstall_commands = uninstall_commands
 
         # Python options
         self.py_version = py_version
